@@ -1,0 +1,9 @@
+[package]
+name = "project-1"
+version = "0.1.0"
+authors = ["lisk"]
+
+[dependencies]
+
+#[target.'cfg(windows)'.dependencies]
+#winapi = { version = "0.3", features = ["winuser"] }
