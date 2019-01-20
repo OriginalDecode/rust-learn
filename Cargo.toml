@@ -7,3 +7,4 @@ authors = ["decode"]
 [target.'cfg(windows)'.dependencies]
 winapi = { version = "0.3.6", features = ["winuser", "minwindef", "libloaderapi", "windef"] }
 gfx = "0.17"
+chrono = "0.4.6"
