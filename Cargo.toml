@@ -1,9 +1,9 @@
 [package]
-name = "project-1"
+name = "rust-learn"
 version = "0.1.0"
-authors = ["lisk"]
+authors = ["decode"]
 
 [dependencies]
-
-#[target.'cfg(windows)'.dependencies]
-#winapi = { version = "0.3", features = ["winuser"] }
+[target.'cfg(windows)'.dependencies]
+winapi = { version = "0.3.6", features = ["winuser", "minwindef", "libloaderapi", "windef"] }
+gfx = "0.17"
