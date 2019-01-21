@@ -47,14 +47,13 @@ impl Logger {
         }
     }
 
-    pub fn write_log(&self, msg : &str) {
+    pub fn write(&self, msg : &str) {
         if let Err(e) = writeln!(&self.file_handle, "{}", msg) {
             eprintln!("Failed to write to file: {}", e);
         }
     }
 }
 
-//public function in the module.
-pub fn write_log(msg : &str) {
-    LOGGER.write_log(msg);
+pub fn write(msg : &str) {
+    LOGGER.write(msg);
 }

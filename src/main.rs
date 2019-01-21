@@ -16,6 +16,7 @@ fn main()
 		{
 			break;
 		}
-		logger::write_log("Hello there!");
+		
+		logger::write("Hello there!");
 	}
 }
