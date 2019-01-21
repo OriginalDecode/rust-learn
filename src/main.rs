@@ -16,11 +16,6 @@ fn main()
 		{
 			break;
 		}
-
-		// logger::write_log(LOGGER.get().unwrap());
-
 		logger::write_log("Hello there!");
 	}
-
-	
 }
