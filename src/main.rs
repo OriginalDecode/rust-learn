@@ -1,17 +1,14 @@
 // #![cfg(all(windows, target_arch = "x86_64"))]
-
+#[macro_use]
+extern crate lazy_static;
 
 mod vector;
 mod window;
 mod logger;
 
-
-
 #[cfg(windows)]
 fn main() 
 {
-	let mut log : logger::Logger = logger::new_log();
-
 	let mut window = window::create_window("Rustc Window", "rustcwindow").unwrap();
 	loop 
 	{
@@ -19,7 +16,10 @@ fn main()
 		{
 			break;
 		}
-		log.write_log("Hello there!");
+
+		// logger::write_log(LOGGER.get().unwrap());
+
+		logger::write_log("Hello there!");
 	}
 
 	

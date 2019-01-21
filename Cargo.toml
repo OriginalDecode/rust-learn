@@ -8,3 +8,4 @@ authors = ["decode"]
 winapi = { version = "0.3.6", features = ["winuser", "minwindef", "libloaderapi", "windef"] }
 gfx = "0.17"
 chrono = "0.4.6"
+lazy_static = "1.2.0"
