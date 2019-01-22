@@ -2,11 +2,11 @@
 name = "rust-learn"
 version = "0.1.0"
 authors = ["decode"]
+edition = "2018"
 
 
 [features]
 default = []
-
 debug = []
 
 [profile.dev]
@@ -19,5 +19,6 @@ opt-level = 3
 [target.'cfg(windows)'.dependencies]
 winapi = { version = "0.3.6", features = ["winuser", "minwindef", "libloaderapi", "windef"] }
 gfx = "0.17"
+
 chrono = "0.4.6"
 lazy_static = "1.2.0"
