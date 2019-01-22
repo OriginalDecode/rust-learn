@@ -2,6 +2,9 @@
 extern crate winapi;
 use std::io::Error as Window_Error;
 
+// include!("logger.rs");
+use logger;
+
 fn win32_string( value : &str ) -> Vec<u16> {
 	use std::os::windows::prelude::*;
 	std::ffi::OsStr::new( value ).encode_wide().chain( std::iter::once( 0 ) ).collect()
@@ -16,6 +19,7 @@ pub struct Window
 #[cfg(windows)]
 pub fn create_window(title : &str, name : &str) -> Result<Window, Window_Error>
 {
+	logger::write("create_window");
 	let name = win32_string(name);
 	let title = win32_string(title);
 	unsafe {

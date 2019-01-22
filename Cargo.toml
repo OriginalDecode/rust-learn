@@ -3,6 +3,18 @@ name = "rust-learn"
 version = "0.1.0"
 authors = ["decode"]
 
+
+[features]
+default = []
+
+debug = []
+
+[profile.dev]
+opt-level = 0
+
+[profile.release]
+opt-level = 3
+
 [dependencies]
 [target.'cfg(windows)'.dependencies]
 winapi = { version = "0.3.6", features = ["winuser", "minwindef", "libloaderapi", "windef"] }

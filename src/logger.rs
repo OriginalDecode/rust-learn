@@ -20,14 +20,25 @@ fn new_file() -> String {
         eprintln!("Failed to create directory! {}", e);
     }
 
-    String::from(format!("logs\\{}{}{}_{:02}{:02}{:02}_Log.txt",
+    let mut build_flag = "";
+
+     if cfg!( feature = "debug" ) {
+        build_flag = "Debug";
+     } else if cfg!(release){
+        build_flag = "Release";
+    }
+
+    String::from(format!("logs\\{}{}{}_{:02}{:02}{:02}_{}Log.txt",
     date.year().to_string(),
     date.month().to_string(),
     date.day().to_string(),
     local.hour().to_string(), 
     local.minute().to_string(), 
-    local.second().to_string(), 
+    local.second().to_string(),
+    String::from(build_flag).to_string(),
     ).to_string())
+
+
 }
 
 fn open_file( f : &str ) -> File {

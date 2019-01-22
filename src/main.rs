@@ -9,6 +9,7 @@ mod logger;
 #[cfg(windows)]
 fn main() 
 {
+	logger::write("Hello there!");
 	let mut window = window::create_window("Rustc Window", "rustcwindow").unwrap();
 	loop 
 	{
@@ -17,6 +18,5 @@ fn main()
 			break;
 		}
 		
-		logger::write("Hello there!");
 	}
 }
