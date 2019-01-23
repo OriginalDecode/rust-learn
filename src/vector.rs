@@ -27,71 +27,76 @@ pub struct Vector4<T>
 }
 
 macro_rules! impl_op {
-	( $trait:ident, $vector:ty, $_block:block ) => {
+	($this:ident, $rhs:ident, $vector:ty, $body:block, $fname:ident, $trait:ident) => {
 		impl<T> $trait<$vector> for $vector 
-			where T: $trait<T, Output=T> {
-				$_block
+			where T: $trait<T, Output=T>
+		{
+			type Output = $vector;
+			fn $fname($this, $rhs : $vector ) -> $vector {
+				$body
 			}
+		}
 	};
 }
 
+macro_rules! impl_add {
+	($this:ident, $rhs:ident, $vector:ty, $body:block) => {
+		impl_op!($this, $rhs, $vector, $body, add, Add);
+	};
+}
+
+macro_rules! impl_sub {
+	($this:ident, $rhs:ident, $vector:ty, $body:block) => {
+		impl_op!($this, $rhs, $vector, $body, sub, Sub);
+	};
+}
+
+macro_rules! impl_mul {
+	($this:ident, $rhs:ident, $vector:ty, $body:block) => {
+		impl_op!($this, $rhs, $vector, $body, mul, Mul);
+	};
+}
+
+macro_rules! impl_div {
+	($this:ident, $rhs:ident, $vector:ty, $body:block) => {
+		impl_op!($this, $rhs, $vector, $body, div, Div);
+	};
+}
+
+
 use std::ops:: { Add, Mul,  Sub, Div };
 
-// impl<T> Add<Vector2<T>> for Vector2<T> 
-// 	where T: Add<T, Output=T>
-impl_op! { Add, Vector2<T>, {
-	type Output = Vector2<T>;
-	fn add(self, rhs: Vector2<T> ) -> Vector2<T> 
+impl_add!(self, rhs, Vector2<T>, {
+	Vector2::<T> 
 	{
-		Vector2::<T> 
-		{
-			x: self.x + rhs.x,
-			y: self.y + rhs.y,
-		}
+		x : self.x + rhs.x,
+		y : self.y + rhs.y,
 	}
-}}
+});
 
-impl<T> Sub<Vector2<T>> for Vector2<T> 
-	where T: Sub<T, Output=T>
-{
-	type Output = Vector2<T>;
-	fn sub(self, rhs: Vector2<T> ) -> Vector2<T> 
+impl_sub!(self, rhs, Vector2<T>, {
+	Vector2::<T> 
 	{
-		Vector2::<T> 
-		{
-			x: self.x - rhs.x,
-			y: self.y - rhs.y,
-		}
+		x: self.x - rhs.x,
+		y: self.y - rhs.y,
 	}
-}
+});
 
-impl<T> Mul<Vector2<T>> for Vector2<T> 
-	where T: Mul<T, Output=T>
-{
-	type Output = Vector2<T>;
-	fn mul(self, rhs: Vector2<T> ) -> Vector2<T> 
+impl_mul!(self, rhs, Vector2<T>, {
+	Vector2::<T> 
 	{
-		Vector2::<T> 
-		{
-			x: self.x * rhs.x,
-			y: self.y * rhs.y,
-		}
+		x: self.x * rhs.x,
+		y: self.y * rhs.y,
 	}
-}
+});
 
-impl<T> Div<Vector2<T>> for Vector2<T>
-	where T: Div<T, Output=T>
-{
-	type Output = Vector2<T>;
-	fn div(self, rhs: Vector2<T>) ->Vector2<T> 
+impl_div!(self, rhs, Vector2<T>, {
+	Vector2::<T> 
 	{
-		Vector2::<T> 
-		{
-			x:self.x / rhs.x,
-			y:self.y / rhs.y, 
-		}
+		x: self.x / rhs.x,
+		y: self.y / rhs.y,
 	}
-}
+});
 
 #[inline(always)]
 pub fn vec2_dot<T>( a : Vector2<T>, b : Vector2<T>) -> T 
