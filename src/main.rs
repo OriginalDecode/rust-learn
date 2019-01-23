@@ -9,6 +9,7 @@ extern crate lazy_static;
 mod vector;
 mod window;
 mod logger;
+mod matrix4;
 
 #[cfg(windows)]
 fn main() 
