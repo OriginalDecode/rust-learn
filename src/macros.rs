@@ -1,7 +1,8 @@
+
 macro_rules! impl_op {
 	($this:ident, $rhs:ident, $vector:ty, $body:block, $fname:ident, $trait:ident) => {
 		impl<T> $trait<$vector> for $vector 
-			where T: $trait<T, Output=T>
+			where T: Copy + $trait<T, Output=T>
 		{
 			type Output = $vector;
 			fn $fname($this, $rhs : $vector ) -> $vector {
